@@ -33,7 +33,7 @@ export default class getUpdateSave {
         if (!newSaveInfo) {
             throw new Error('getCloudSaveInfo failed')
         }
-        if (newSaveInfo.modifiedAt.iso.getTime() != old?.saveInfo?.modifiedAt?.iso?.getTime()) {
+        if (new Date(newSaveInfo.modifiedAt.iso).getTime() != old?.saveInfo?.modifiedAt?.iso?.getTime()) {
             const newSave = await makeRequestFnc.requestApi(
                 e,
                 () => makeRequest.getCloudSaves({ token: token, ...makeRequestFnc.makePlatform(e) }),
