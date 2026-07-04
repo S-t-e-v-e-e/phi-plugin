@@ -140,6 +140,7 @@ body p {
   padding: 4px;
   padding-left: 10px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .spInfoBox {
