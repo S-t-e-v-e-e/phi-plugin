@@ -113,7 +113,7 @@ export class phib19 extends phiPluginBase {
         let err = save.checkNoInfo()
 
         if (err.length) {
-            send.send_with_At(e, "以下曲目无信息，可能导致b19显示错误\n" + err.join('\n'))
+            send.send_with_At(e, "以下曲目无信息，可能导致b30显示缺失\n" + err.join('\n'))
         }
 
 
@@ -197,7 +197,6 @@ export class phib19 extends phiPluginBase {
         }
         // console.info(save_b19.b19_list)
         let data = {
-            BSIllPath: getInfo.getill(/**@type {idString} */('BANGINGSTRIKE.DewPleiades.0'), 'common'),
             phi: save_b19.phi,
             b19_list: save_b19.b19_list,
             PlayerId: gameuser.PlayerId,
@@ -239,7 +238,7 @@ export class phib19 extends phiPluginBase {
         let err = save.checkNoInfo()
 
         if (err.length) {
-            send.send_with_At(e, "以下曲目无信息，可能导致b19显示错误\n" + err.join('\n'))
+            send.send_with_At(e, "以下曲目无信息，可能导致b30显示缺失\n" + err.join('\n'))
         }
 
 
@@ -361,7 +360,7 @@ export class phib19 extends phiPluginBase {
         let err = save.checkNoInfo()
 
         if (err.length) {
-            send.send_with_At(e, "以下曲目无信息，可能导致b19显示错误\n" + err.join('\n'))
+            send.send_with_At(e, "以下曲目无信息，可能导致b30显示缺失\n" + err.join('\n'))
         }
 
 
@@ -425,7 +424,7 @@ export class phib19 extends phiPluginBase {
         let err = save.checkNoInfo()
 
         if (err.length) {
-            send.send_with_At(e, "以下曲目无信息，可能导致b19显示错误\n" + err.join('\n'))
+            send.send_with_At(e, "以下曲目无信息，可能导致b30显示缺失\n" + err.join('\n'))
         }
 
 
