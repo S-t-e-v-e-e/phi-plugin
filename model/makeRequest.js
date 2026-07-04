@@ -4,6 +4,7 @@ import { Config } from '../components/index.js';
 import saveHistory from './class/saveHistory.js';
 import logger from '../components/Logger.js';
 import { APIBASEURL } from './constNum.js';
+import autoSeekApi from './autoSeekApi.js';
 
 
 /**
@@ -680,6 +681,7 @@ async function makeFetch(url, params, method = 'POST') {
     } catch (err) {
         // @ts-ignore
         logger.error(`请求失败: ${url}`, err?.message || err?.cause || String(err) || '未知错误');
+        autoSeekApi.seekApi();
         throw new Error('API离线');
     }
     if (!result) {

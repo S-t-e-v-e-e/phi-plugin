@@ -101,7 +101,6 @@
  * @typedef {'WordSuggImg'} WordSuggImg Suggest曲绘图片
  * @typedef {'cmdhead'} cmdhead 命令头
  * @typedef {'openPhiPluginApi'} openPhiPluginApi 是否启用Phigros联合查分API地址
- * @typedef {'autoOpenApi'} autoOpenApi 检测API状态成功后，是否自动开启API
  * @typedef {'debug'} debug 输出测试日志
  * @typedef {'otherinfo'} otherinfo 曲库
  * @typedef {'mutiNickWaitTimeOut'} mutiNickWaitTimeOut 多个曲目回复序号等待时长
@@ -150,7 +149,6 @@
  * |WordSuggImg
  * |cmdhead
  * |openPhiPluginApi
- * |autoOpenApi
  * |debug
  * |otherinfo
  * |mutiNickWaitTimeOut
