@@ -8,10 +8,7 @@
   <div class="title">
     <div class="gameuser_background">
       <div class="gameuser_background_cover_block"></div>
-      <img
-        src="{{BSIllPath}}"
-        alt="BS"
-      />
+      <img src="{{_res_path}}html/otherimg/DSS2.png" alt="BS">
     </div>
     <div class="frontBlock"></div>
     <div class="phigrosTitle">
@@ -19,7 +16,7 @@
       <p>Phigros</p>
     </div>
     <div class="titleDesc">
-      <p class="weight-font">RKS组成列表</p>
+      <p class="weight-font">RankingScore 查询</p>
     </div>
     <div class="titlePlayerInfo">
       <div class="playerId">
@@ -32,7 +29,7 @@
             <p>{{gameuser.ChallengeModeRank}}</p>
           </div>
         </div>
-        <p class="weight-font">{{gameuser.rks.toFixed(4)}}</p>
+        <p class="weight-font">RKS: {{gameuser.rks.toFixed(4)}}</p>
       </div>
     </div>
     <div class="backBlockBox">
