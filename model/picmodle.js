@@ -48,7 +48,10 @@ export default await new class picmodle {
             this.puppeteer.push(new puppeteer({
                 puppeteerTimeout: Config.getUserCfg('config', 'timeout')
             }, `${i}`))
-            this.puppeteer[i].browserInit()
+            this.puppeteer[i].browserInit().catch(err => {
+                logger.error(`[Phi-Plugin][渲染器预热失败]`, i)
+                logger.error(err)
+            })
             this.idle.push(i)
         }
         return this;
@@ -396,9 +399,11 @@ export default await new class picmodle {
 
     async restart() {
         let num = Config.getUserCfg('config', 'renderNum')
+        const tasks = []
         for (let i = 0; i < num; i++) {
-            this.puppeteer[i].restart(true)
+            if (this.puppeteer[i]) tasks.push(this.puppeteer[i].restart(true))
         }
+        await Promise.allSettled(tasks)
     }
 
 }().init()
