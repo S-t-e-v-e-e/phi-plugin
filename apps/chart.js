@@ -10,6 +10,7 @@ import makeRequestFnc from '../model/makeRequestFnc.js';
 import getSave from '../model/getSave.js';
 import { APII18NCN } from '../model/constNum.js'
 import { canUseApi, getApiAccessState } from '../model/apiPermission.js'
+import platform from '../components/platform/index.js'
 
 /** @import {botEvent} from '../components/baseClass.js' */
 /** @import {ChartTagSongRankResponse, ChartTagTreeNode, chartsTagResponseData, chartsTagVoteCountMap} from '../model/makeRequest.js' */
@@ -403,7 +404,7 @@ export class phihelp extends phiPluginBase {
     const childText = getTextAfterMarker(msg, categorySelection.marker)
     const childSelections = findChildSelections(childText, categorySelection.category)
     if (!childSelections.length) {
-      const cleanEvent = { ...e, msg: removeSelectedTagTokens(e.msg, categorySelection, []) }
+      const cleanEvent = platform.cloneEvent(e, { msg: removeSelectedTagTokens(e.msg, categorySelection, []) })
       this.getMicInfoFromMsg(cleanEvent, /[#/](.*?)(settag)(\s*)/, ['rank'], { sessionToken }, async (e, id, optObj) => {
         wait_to_settag[e.user_id] = { id, rank: optObj.rank, sessionToken, category: categorySelection.category }
         send.send_with_At(e, formatTagChildMenu(categorySelection.category), true);
@@ -414,7 +415,7 @@ export class phihelp extends phiPluginBase {
 
     /** @type {chartsTagString[]} */
     const selectedTags = childSelections.map(selection => /** @type {chartsTagString} */ (selection.tag.name));
-    const cleanEvent = { ...e, msg: removeSelectedTagTokens(e.msg, categorySelection, childSelections) }
+    const cleanEvent = platform.cloneEvent(e, { msg: removeSelectedTagTokens(e.msg, categorySelection, childSelections) })
 
     this.getMicInfoFromMsg(cleanEvent, /[#/](.*?)(settag)(\s*)/, ['rank'], { selectedTags, sessionToken }, async (e, id, optObj) => {
       await setChartTags(e, id, optObj)

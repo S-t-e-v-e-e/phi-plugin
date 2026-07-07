@@ -26,7 +26,8 @@ await getInfo.init();
 logger.mark(chalk.rgb(255, 255, 0)('-------φ^_^φ-------'))
 logger.mark('正在载入phi插件...')
 
-const files = fs.readdirSync('./plugins/phi-plugin/apps').filter(file => file.endsWith('.js'))
+const appsDir = new URL('./apps/', import.meta.url)
+const files = fs.readdirSync(appsDir).filter(file => file.endsWith('.js'))
 let errvis = false
 /**
  * @type {Promise<unknown>[]}

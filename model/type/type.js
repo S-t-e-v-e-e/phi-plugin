@@ -3,6 +3,8 @@
  * @typedef {string & { readonly brand: unique symbol }} idStringWithout0 曲目id
  * @typedef {string & { readonly brand: unique symbol }} songString 曲目名称
  * @typedef {string & { readonly brand: unique symbol }} chartsTagString 谱面标签
+ * @typedef {'category' | 'detail'} chartsTagNodeKind 谱面标签节点类型，category 为分类标签，detail 为细分标签
+ * @typedef {'primary' | 'secondary'} chartsTagVoteKind 谱面标签投票类型，primary 为主要票，secondary 为次要票
  * @typedef {string & { readonly brand: unique symbol }} phigrosToken phigrosToken
  * @typedef {string & { readonly brand: unique symbol }} apiToken apiToken
  * @typedef {string & { readonly brand: unique symbol }} apiUserId apiId

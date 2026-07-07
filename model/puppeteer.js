@@ -1,15 +1,16 @@
 // @ts-nocheck
-import Renderer from "../../../lib/renderer/Renderer.js"
 import childProcess from "node:child_process"
 import path from "node:path"
 import { pathToFileURL } from "node:url"
 import puppeteer from "puppeteer"
 import timers from "node:timers/promises"
 import fs from "node:fs/promises"
-// 暂时保留对原config的兼容
-import cfg from "../../../lib/config/config.js"
 import { tempPath } from "./path.js"
 import logger from "../components/Logger.js"
+import platform from "../components/platform/index.js"
+
+const Renderer = platform.RendererBase
+const botConfig = platform.getBotConfig()
 
 /**
  * 渲染器实例对外暴露的公共接口（供 picmodle 等消费方做类型推断）
@@ -50,7 +51,7 @@ class Puppeteer extends Renderer {
         /** 截图次数 */
         this.renderNum = 0
         /** 空闲多久(ms)后自动关闭浏览器释放资源，0 为不关闭 */
-        this.idleTimeout = config.idleTimeout ?? cfg?.bot?.puppeteer_idle ?? 1800000
+        this.idleTimeout = config.idleTimeout ?? botConfig?.puppeteer_idle ?? 1800000
         /** 空闲定时器 */
         this.idleTimer = null
         /** 关闭浏览器的超时时间(ms)，超时则强制结束进程 */
@@ -60,11 +61,11 @@ class Puppeteer extends Renderer {
             headless: config.headless || "new",
             args: config.args || ["--disable-gpu", "--disable-setuid-sandbox", "--no-sandbox", "--no-zygote"],
         }
-        if (config.chromiumPath || cfg?.bot?.chromium_path) {
-            this.config.executablePath = config.chromiumPath || cfg?.bot?.chromium_path
+        if (config.chromiumPath || botConfig?.chromium_path) {
+            this.config.executablePath = config.chromiumPath || botConfig?.chromium_path
         }
         /** puppeteer截图超时时间 */
-        this.puppeteerTimeout = config.puppeteerTimeout || cfg?.bot?.puppeteer_timeout || 0
+        this.puppeteerTimeout = config.puppeteerTimeout || botConfig?.puppeteer_timeout || 0
         this.pageGotoParams = config.pageGotoParams || {
             timeout: 120000,
             waitUntil: ["networkidle0", "load", "domcontentloaded"],

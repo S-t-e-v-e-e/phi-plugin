@@ -1,5 +1,4 @@
 import axios from 'axios';
-import https from 'node:https';
 import { Config } from '../components/index.js';
 import saveHistory from './class/saveHistory.js';
 import logger from '../components/Logger.js';
@@ -311,8 +310,6 @@ import autoSeekApi from './autoSeekApi.js';
  *   secondaryTags?: chartsTagString[]
  * }} setChartsTagParams
  */
-
-const agent = new https.Agent({ rejectUnauthorized: false });
 
 export default class makeRequest {
 

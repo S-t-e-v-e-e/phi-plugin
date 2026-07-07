@@ -13,6 +13,7 @@ import makeRequestFnc from "./makeRequestFnc.js";
 import send from "./send.js";
 import { canUseApi } from './apiPermission.js';
 import getInfo from "./getInfo.js";
+import platform from "../components/platform/index.js";
 
 /**@import {botEvent} from "../components/baseClass.js" */
 
@@ -98,7 +99,7 @@ export default class getUpdateSave {
                 return old ? { save: old, added_rks_notes: [0, 0] } : undefined
             }
         } catch (err) {
-            if (e.bot?.adapter?.name !== 'QQBot') {
+            if (platform.getAdapterName(e) !== 'QQBot') {
                 send.send_with_At(e, "更新失败！QAQ\n" + err)
             } else {
                 send.send_with_At(e, "更新失败！QAQ\n请稍后重试")
